@@ -1,3 +1,4 @@
+document.getElementById("btnIniciar").addEventListener("click", function () {
 let nombre = prompt("¿Cuál es tu nombre?");
 let nacimiento = prompt("¿En qué año naciste?");
 
@@ -10,3 +11,4 @@ let edad = anioActual - nacimiento;
 let mensaje = "Hola, " + nombre + ". Tienes " + edad + " años.";
 
 document.getElementById("resultado").textContent = mensaje;
+});

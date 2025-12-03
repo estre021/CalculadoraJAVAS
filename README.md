@@ -1,2 +1,2 @@
 # CalculadoraJAVAS
-Programa para calcular la edad utilizando JAVASCRIPT
+Programa para calcular el tiempo de cocion de una lasaña utilizando JAVASCRIPT

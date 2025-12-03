@@ -3,19 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Edad</title>
+    <title>Calculadora de Lasaña</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-    <h1>Calculadora de edad</h1>
+    <div class="container">
+        <h1>Calculadora de Lasaña</h1>
 
-    <button id="btnIniciar">Ingresar datos</button>
+        <div class="form-group">
+            <label for="capas">Capas de lasaña:</label>
+            <input type="number" id="capas" placeholder="Ej: 5">
+        </div>
 
-    <p id="resultado" class="resultado"></p>
-</div>
+        <div class="form-group">
+            <label for="horno">Minutos en el horno:</label>
+            <input type="number" id="horno" placeholder="Ej: 20">
+        </div>
 
-<script src="script.js"></script>
+        <button id="btnCalcular">Calcular</button>
+
+        <div id="resultados">
+            <p id="restante"></p>
+            <p id="preparacion"></p>
+            <p id="total"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

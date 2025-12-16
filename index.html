@@ -3,30 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Lasaña</title>
+    <title>Tasky - Sistema de Gestión de Tareas</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="material-symbols-rounded">check_circle</span>
+                Tasky
+            </div>
+            <nav class="main-nav">
+                <a href="#" class="nav-item">
+                    <span class="material-symbols-rounded">dashboard</span>
+                    Dashboard
+                </a>
+                <a href="#" class="nav-item active">
+                    <span class="material-symbols-rounded">task</span>
+                    Tasks
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="material-symbols-rounded">calendar_month</span>
+                    Calendar
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="material-symbols-rounded">group</span>
+                    Members
+                </a>
+            </nav>
+        </aside>
 
-    <div class="container">
-        <h1>Calculadora de Lasaña</h1>
+        <main class="main-content">
+            <header class="main-header">
+                <div class="search-bar">
+                    <span class="material-symbols-rounded">search</span>
+                    <input type="text" placeholder="Search tasks">
+                </div>
+                <div class="header-actions">
+                    <span class="material-symbols-rounded icon-button">chat_bubble</span>
+                    <div class="user-avatar"></div>
+                </div>
+            </header>
 
-        <div class="form-group">
-            <label for="capas">Capas de lasaña:</label>
-            <input type="number" id="capas" placeholder="Ej: 5">
+            <div class="toolbar">
+                <button class="action-button" id="preview-button"><span class="material-symbols-rounded">visibility</span> Preview</button>
+                <button class="action-button" id="sort-button"><span class="material-symbols-rounded">sort</span> Sort</button>
+                <button class="action-button" id="filter-modal-btn"><span class="material-symbols-rounded">filter_alt</span> Filter</button>
+                <button class="add-task-button" id="open-modal-btn">
+                    <span class="material-symbols-rounded">add</span> Add task
+                </button>
+            </div>
+
+            <div class="task-board">
+                <section class="task-column">
+                    <div class="column-header">
+                        <h3 class="column-title">In Progress (<span id="in-progress-count">0</span>)</h3>
+                        <span class="material-symbols-rounded more-icon">more_vert</span>
+                    </div>
+                    <div class="task-list" id="in-progress-list">
+                        </div>
+                </section>
+                
+                <section class="task-column">
+                    <div class="column-header">
+                        <h3 class="column-title">Completed Task (<span id="completed-count">0</span>)</h3>
+                        <span class="material-symbols-rounded more-icon">more_vert</span>
+                    </div>
+                    <div class="task-list" id="completed-list">
+                        </div>
+                </section>
+                
+                <section class="task-column">
+                    <div class="column-header">
+                        <h3 class="column-title">Over-Due (<span id="overdue-count">0</span>)</h3>
+                        <span class="material-symbols-rounded more-icon">more_vert</span>
+                    </div>
+                    <div class="task-list" id="overdue-list">
+                        </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button task-close-btn">&times;</span>
+            <h2 id="modal-title">Registrar Nueva Tarea</h2>
+            <form id="task-form">
+                <input type="hidden" id="task-id" name="id">
+                <div class="form-group"><label for="title">Título de la Tarea</label><input type="text" id="title" name="title" required></div>
+                <div class="form-group"><label for="description">Descripción Detallada</label><textarea id="description" name="description" rows="4" required></textarea></div>
+                <div class="form-row">
+                    <div class="form-group"><label for="dueDate">Fecha de Entrega</label><input type="date" id="dueDate" name="dueDate" required></div>
+                    <div class="form-group">
+                    <label for="area">Materia/Área</label>
+                    <select id="area" name="area" required>
+                        <option value="" disabled selected>Selecciona una Materia</option>
+                        <option value="Español">Español</option>
+                        <option value="Matemáticas">Matemáticas</option>
+                        <option value="Sociales">Sociales</option>
+                        <option value="Desarrollo">Desarrollo (Programación)</option>
+                        <option value="Naturales">Naturales</option>
+                        <option value="Paginas Web">Páginas Web (Diseño/Frontend)</option>
+                    </select>
+                </div>
+                </div>
+                <div class="form-group">
+                    <label for="priority">Nivel de Prioridad</label>
+                    <select id="priority" name="priority" required>
+                        <option value="High">Alta</option>
+                        <option value="Medium">Media</option>
+                        <option value="Low">Baja</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="status">Estado</label>
+                    <select id="status" name="status" required>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Completed Task">Completed Task</option>
+                        <option value="Over-Due">Over-Due</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Guardar Tarea</button>
+            </form>
         </div>
+    </div>
 
-        <div class="form-group">
-            <label for="horno">Minutos en el horno:</label>
-            <input type="number" id="horno" placeholder="Ej: 20">
+    <div id="detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button detail-close-btn">&times;</span>
+            <h2 id="detail-title"></h2>
+            <div class="detail-info">
+                <p><strong>Prioridad:</strong> <span id="detail-priority"></span></p>
+                <p><strong>Materia/Área:</strong> <span id="detail-area"></span></p>
+                <p><strong>Fecha de Entrega:</strong> <span id="detail-dueDate"></span></p>
+                <p><strong>Estado:</strong> <span id="detail-status"></span></p>
+            </div>
+            <h3>Descripción Completa</h3>
+            <p id="detail-description"></p>
         </div>
+    </div>
+    
+    <div id="filter-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button filter-close-btn">&times;</span>
+            <h2>Filtros Rápidos</h2>
+            <form id="filter-form">
+                <div class="form-group">
+                    <label for="filter-priority">Filtrar por Prioridad</label>
+                    <select id="filter-priority" name="priority">
+                        <option value="">Todas las Prioridades</option>
+                        <option value="High">Alta</option>
+                        <option value="Medium">Media</option>
+                        <option value="Low">Baja</option>
+                    </select>
+                </div>
 
-        <button id="btnCalcular">Calcular</button>
-
-        <div id="resultados">
-            <p id="restante"></p>
-            <p id="preparacion"></p>
-            <p id="total"></p>
+                <div class="form-group">
+                    <label for="filter-area">Filtrar por Área/Materia</label>
+                    <select id="filter-area" name="area">
+                        <option value="">Todas las Áreas</option>
+                        </select>
+                </div>
+                
+                <button type="button" id="apply-filter-btn" class="submit-button">Aplicar Filtros</button>
+                <button type="button" id="clear-filter-btn" class="submit-button" style="background-color: #6B7280;">Limpiar Filtros</button>
+            </form>
         </div>
     </div>
 
